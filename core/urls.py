@@ -17,9 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from red_team import views
+from blue_team import views as blue_views 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('red/launch/', views.trigger_attack, name='launch_attack'),
     path('red/success/', views.attack_success, name='attack_success'),
+    path('blue/dashboard/', blue_views.dashboard, name='soc_dashboard'),
+
 ]

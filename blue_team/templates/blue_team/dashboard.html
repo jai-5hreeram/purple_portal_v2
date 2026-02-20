@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Blue Team | SOC Dashboard</title>
+    <style>
+      body {
+        background-color: #000b1a;
+        color: #00f2ff;
+        font-family: "Segoe UI", monospace;
+        padding: 20px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+      }
+      .card {
+        border: 1px solid #00f2ff;
+        padding: 15px;
+        background: rgba(0, 242, 255, 0.05);
+        box-shadow: 0 0 10px #00f2ff33;
+      }
+      .header {
+        border-bottom: 2px solid #00f2ff;
+        margin-bottom: 30px;
+        padding-bottom: 10px;
+      }
+      .type {
+        color: #ff3333;
+        font-weight: bold;
+      }
+      .timestamp {
+        color: #888;
+        font-size: 0.8em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>🛡️ SECURITY OPERATIONS CENTER (SOC)</h1>
+      <p>Real-time Threat Monitoring Active...</p>
+    </div>
+
+    <div class="grid">
+      {% for incident in incidents %}
+      <div class="card">
+        <div class="type">[!] {{ incident.get_type_display }}</div>
+        <div class="timestamp">{{ incident.timestamp }}</div>
+        <hr style="border: 0.5px solid #00f2ff44" />
+        <p>
+          <strong>Payload:</strong><br /><code>{{ incident.payload }}</code>
+        </p>
+        <p><strong>Source IP:</strong> {{ incident.attacker_ip }}</p>
+      </div>
+      {% empty %}
+      <p>No threats detected. System status: SECURE.</p>
+      {% endfor %}
+    </div>
+  </body>
+</html>
