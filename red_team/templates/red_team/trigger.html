@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Red Team Terminal</title>
+    <style>
+        body { background: #1a1a1a; color: #ff3333; font-family: monospace; }
+        .container { border: 2px solid #ff3333; padding: 20px; width: 400px; margin: 50px auto; }
+        select, textarea, button { width: 100%; margin: 10px 0; background: #333; color: white; border: 1px solid red; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🚀 LAUNCH ATTACK</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <label>Attack Type:</label>
+            <select name="attack_type">
+                <option value="SQLI">SQL Injection</option>
+                <option value="XSS">XSS</option>
+                <option value="BRUTE">Brute Force</option>
+            </select>
+            
+            <label>Payload:</label>
+            <textarea name="payload" rows="4"></textarea>
+            
+            <button type="submit">EXECUTE ATTACK</button>
+        </form>
+    </div>
+</body>
+</html>
